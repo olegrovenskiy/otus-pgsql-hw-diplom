@@ -19,3 +19,7 @@ https://github.com/zalando/patroni
 https://habr.com/ru/companies/vk/articles/452846/
 
 https://www.youtube.com/watch?v=lMPYerAYEVs
+
+https://github.com/etcd-io/etcd
+
+
