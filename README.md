@@ -27,3 +27,9 @@ https://blogs.sungeek.net/unixwiz/2018/09/02/centos-7-postgresql-10-patroni/
 https://docs.percona.com/postgresql/11/solutions/ha-setup-yum.html
 
 
+https://access.crunchydata.com/documentation/patroni/2.1.3/pdf/patroni.pdf
+
+https://www.dbi-services.com/blog/patroni-2-0-new-features-patroni-on-pure-raft/
+
+
+
