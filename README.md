@@ -22,4 +22,8 @@ https://www.youtube.com/watch?v=lMPYerAYEVs
 
 https://github.com/etcd-io/etcd
 
+https://blogs.sungeek.net/unixwiz/2018/09/02/centos-7-postgresql-10-patroni/
+
+https://docs.percona.com/postgresql/11/solutions/ha-setup-yum.html
+
 
