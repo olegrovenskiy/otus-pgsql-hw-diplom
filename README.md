@@ -31,5 +31,9 @@ https://access.crunchydata.com/documentation/patroni/2.1.3/pdf/patroni.pdf
 
 https://www.dbi-services.com/blog/patroni-2-0-new-features-patroni-on-pure-raft/
 
+https://docs.vmware.com/en/VMware-Postgres/16.1/vmware-postgres/bp-patroni-setup.html
+
+
+
 
 
