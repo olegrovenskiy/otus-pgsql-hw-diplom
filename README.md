@@ -34,6 +34,17 @@ https://docs.vmware.com/en/VMware-Postgres/16.1/vmware-postgres/bp-patroni-setup
 
 https://itdraft.ru/2023/08/14/nastrojka-otkazoustojchivogo-klastera-postgresql-v-linux/
 
+для настройки
+
+https://itdraft.ru/2023/08/14/nastrojka-otkazoustojchivogo-klastera-postgresql-v-linux/
+
+https://postgreshelp.com/postgresql-ha-with-patroni-3/#Install_Patroni_p4p5p6
+
+https://www.dmosk.ru/miniinstruktions.php?mini=patroni-consul-centos&ysclid=ltqxx4ifq751545757
+
+https://dbtut.com/index.php/2022/06/04/how-to-create-a-postgresql-cluster-with-patroni/
+
+
 
 
 
