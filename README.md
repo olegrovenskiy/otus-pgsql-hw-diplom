@@ -45,6 +45,27 @@ https://www.dmosk.ru/miniinstruktions.php?mini=patroni-consul-centos&ysclid=ltqx
 https://dbtut.com/index.php/2022/06/04/how-to-create-a-postgresql-cluster-with-patroni/
 
 
+Подготовка 1-ой ВМ с PGSQL
+
+Виртуальная машина в среде ВМваре
+Centos-7, так как это корпоративный стандарт
+
+yum update
+
+yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+
+yum localinstall https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/l/libzstd-1.5.5-1.el7.x86_64.rpm
+
+yum install postgresql15 postgresql15-server postgresql15-contrib
+
+psql -V
+
+systemctl enable postgresql-15
+
+
+
+
+
 
 
 
