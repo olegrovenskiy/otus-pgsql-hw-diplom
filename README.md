@@ -118,7 +118,44 @@ Web server:
     [root@mck-network-test-tmp-1 data]#
 
 
+Disable Selinux [all machines]
 
+Log in to p1 and edit /etc/selinux/config file with any of your favorite text editor:
+vi /etc/selinux/config
+Change SELINUX=enforcing to SELINUX=disabled
+
+SELINUX=disabled
+Reboot to make the selinux changes effect:
+
+reboot
+
+--------------
+
+Create postgres user [all machines]
+
+useradd postgres
+passwd postgres
+
+------------
+yum install gcc
+
+export PATH=/usr/pgsql-15/bin/:$PATH
+
+pip3 install --upgrade setuptools
+
+что бы выполнить
+
+sudo pip3 install psycopg2-binary && sudo apt install libpq-dev python3-dev && sudo pip3 install psycopg2
+
+потребовалосб апгред питон3 и pip3
+а также
+yum install postgresql-devel
+yum install python3-devel
+
+
+после чего прошла инсталяция pip3 installpsycopg2-binary &&  pip3 install psycopg2
+
+Необходимые подготовительные компоненты установлены
 
 
 
