@@ -65,7 +65,58 @@ systemctl enable postgresql-15
 детально процес подготовки и инсталяции PostgreSQL описан в ДЗ к уроку 2
 https://github.com/olegrovenskiy/otus-pgsql-hw-lesson-2?tab=readme-ov-file
 
-Сервер mck-network-test-tmp-1 с postgresql-15 подготовлен
+1.  Сервер mck-network-test-tmp-1 с postgresql-15 подготовлен
+2.  Открыть файрвол
+
+Patroni:
+8008: This port is used for the HTTP API of Patroni.
+HAProxy:
+5000: This port is used for HTTP connections to the backend (PostgreSQL service).
+5001: This port is used for HTTPS connections to the backend (PostgreSQL service).
+etcd:
+2379: This port is used for etcd client communication.
+2380: This port is used for etcd server-to-server communication.
+Keepalived:
+112: This port is used for the Virtual Router Redundancy Protocol (VRRP) communication between Keepalived instances.
+5405: This port is used for the multicast traffic between Keepalived instances.
+Pgbouncer:
+6432: This port is used for Pgbouncer client connections.
+PostgreSQL:
+5432: This port is used for PostgreSQL client connections.
+Web server:
+5000: This port is used for HTTP connections to the web server.
+5001: This port is used for HTTPS connections to the web server.
+7000: This port is used for the reverse proxy connection from the web server to HAProxy.
+
+    [root@mck-network-test-tmp-1 data]#
+    [root@mck-network-test-tmp-1 data]# firewall-cmd --zone=public --add-port=5432/tcp --permanent
+    success
+    [root@mck-network-test-tmp-1 data]# firewall-cmd --zone=public --add-port=6432/tcp --permanent
+    success
+    [root@mck-network-test-tmp-1 data]# firewall-cmd --zone=public --add-port=8008/tcp --permanent
+    success
+    [root@mck-network-test-tmp-1 data]# firewall-cmd --zone=public --add-port=2379/tcp --permanent
+    success
+    [root@mck-network-test-tmp-1 data]# firewall-cmd --zone=public --add-port=2380/tcp --permanent
+    success
+    [root@mck-network-test-tmp-1 data]# firewall-cmd --permanent --zone=public --add-service=http
+    success
+    [root@mck-network-test-tmp-1 data]# firewall-cmd --zone=public --add-port=5000/tcp --permanent
+    success
+    [root@mck-network-test-tmp-1 data]# firewall-cmd --zone=public --add-port=5001/tcp --permanent
+    success
+    [root@mck-network-test-tmp-1 data]# firewall-cmd --zone=public --add-port=7000/tcp --permanent
+    success
+    [root@mck-network-test-tmp-1 data]# firewall-cmd --zone=public --add-port=112/tcp --permanent
+    success
+    [root@mck-network-test-tmp-1 data]# firewall-cmd --zone=public --add-port=5405/tcp --permanent
+    success
+    [root@mck-network-test-tmp-1 data]# firewall-cmd --add-rich-rule='rule protocol value="vrrp" accept' --permanent
+    success
+    [root@mck-network-test-tmp-1 data]# firewall-cmd --reload
+    success
+    [root@mck-network-test-tmp-1 data]#
+
 
 
 
