@@ -62,7 +62,10 @@ psql -V
 
 systemctl enable postgresql-15
 
+детально процес подготовки и инсталяции PostgreSQL описан в ДЗ к уроку 2
+https://github.com/olegrovenskiy/otus-pgsql-hw-lesson-2?tab=readme-ov-file
 
+Сервер mck-network-test-tmp-1 с postgresql-15 подготовлен
 
 
 
