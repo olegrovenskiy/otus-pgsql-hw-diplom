@@ -365,4 +365,136 @@ pip3 install python-etcd
         
 Сервис ETCD инсталирован и запускается
 
+Установка KeepAlived 
+
+
+[root@mck-network-test-tmp-1 ~]# systemctl status keepalived
+● keepalived.service - LVS and VRRP High Availability Monitor
+   Loaded: loaded (/usr/lib/systemd/system/keepalived.service; enabled; vendor preset: disabled)
+   Active: active (running) since Fri 2024-03-15 11:01:54 EDT; 28s ago
+ Main PID: 2148 (keepalived)
+   CGroup: /system.slice/keepalived.service
+           ├─2148 /usr/sbin/keepalived -D
+           ├─2149 /usr/sbin/keepalived -D
+           └─2150 /usr/sbin/keepalived -D
+
+Mar 15 11:02:14 mck-network-test-tmp-1.mgc.local Keepalived_vrrp[2150]: Sending gratuitous ARP on ens192 for 10.102.6.222
+Mar 15 11:02:14 mck-network-test-tmp-1.mgc.local Keepalived_vrrp[2150]: Sending gratuitous ARP on ens192 for 10.102.6.222
+Mar 15 11:02:14 mck-network-test-tmp-1.mgc.local Keepalived_vrrp[2150]: /usr/libexec/keepalived/haproxy_check.sh exited with status 1
+Mar 15 11:02:19 mck-network-test-tmp-1.mgc.local Keepalived_vrrp[2150]: Sending gratuitous ARP on ens192 for 10.102.6.222
+Mar 15 11:02:19 mck-network-test-tmp-1.mgc.local Keepalived_vrrp[2150]: VRRP_Instance(VI_1) Sending/queueing gratuitous ARPs on ens192 for 10.102.6.222
+Mar 15 11:02:19 mck-network-test-tmp-1.mgc.local Keepalived_vrrp[2150]: Sending gratuitous ARP on ens192 for 10.102.6.222
+Mar 15 11:02:19 mck-network-test-tmp-1.mgc.local Keepalived_vrrp[2150]: Sending gratuitous ARP on ens192 for 10.102.6.222
+Mar 15 11:02:19 mck-network-test-tmp-1.mgc.local Keepalived_vrrp[2150]: Sending gratuitous ARP on ens192 for 10.102.6.222
+Mar 15 11:02:19 mck-network-test-tmp-1.mgc.local Keepalived_vrrp[2150]: Sending gratuitous ARP on ens192 for 10.102.6.222
+Mar 15 11:02:19 mck-network-test-tmp-1.mgc.local Keepalived_vrrp[2150]: /usr/libexec/keepalived/haproxy_check.sh exited with status 1
+[root@mck-network-test-tmp-1 ~]#
+
+PATRONO
+
+        pip3 install patroni
+        
+        [root@mck-network-test-tmp-1 ~]# pip3 install patroni
+        Collecting patroni
+          Downloading patroni-3.2.2-py3-none-any.whl.metadata (11 kB)
+        Requirement already satisfied: urllib3!=1.21,>=1.19.1 in /usr/local/lib/python3.9/site-packages (from patroni) (2.2.1)
+        Collecting PyYAML (from patroni)
+          Downloading PyYAML-6.0.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+        Collecting click>=4.1 (from patroni)
+          Downloading click-8.1.7-py3-none-any.whl.metadata (3.0 kB)
+        Collecting prettytable>=0.7 (from patroni)
+          Downloading prettytable-3.10.0-py3-none-any.whl.metadata (30 kB)
+        Collecting python-dateutil (from patroni)
+          Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+        Collecting psutil>=2.0.0 (from patroni)
+          Downloading psutil-5.9.8-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (21 kB)
+        Collecting ydiff>=1.2.0 (from patroni)
+          Downloading ydiff-1.2.tar.gz (42 kB)
+             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.8/42.8 kB 6.5 MB/s eta 0:00:00
+          Installing build dependencies ... done
+          Getting requirements to build wheel ... done
+          Installing backend dependencies ... done
+          Preparing metadata (pyproject.toml) ... done
+        Collecting wcwidth (from prettytable>=0.7->patroni)
+          Downloading wcwidth-0.2.13-py2.py3-none-any.whl.metadata (14 kB)
+        Collecting six>=1.5 (from python-dateutil->patroni)
+          Downloading six-1.16.0-py2.py3-none-any.whl.metadata (1.8 kB)
+        Downloading patroni-3.2.2-py3-none-any.whl (317 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 318.0/318.0 kB 5.2 MB/s eta 0:00:00
+        Downloading click-8.1.7-py3-none-any.whl (97 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 97.9/97.9 kB 21.7 MB/s eta 0:00:00
+        Downloading prettytable-3.10.0-py3-none-any.whl (28 kB)
+        Downloading psutil-5.9.8-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (288 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 288.2/288.2 kB 36.0 MB/s eta 0:00:00
+        Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 229.9/229.9 kB 24.0 MB/s eta 0:00:00
+        Downloading PyYAML-6.0.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (738 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 738.9/738.9 kB 18.8 MB/s eta 0:00:00
+        Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+        Downloading wcwidth-0.2.13-py2.py3-none-any.whl (34 kB)
+        Building wheels for collected packages: ydiff
+          Building wheel for ydiff (pyproject.toml) ... done
+          Created wheel for ydiff: filename=ydiff-1.2-py3-none-any.whl size=16628 sha256=30f931f487a2542904f27895dc83c2a2497fa9e7a8e93d130253dfd1a514af8d
+          Stored in directory: /root/.cache/pip/wheels/d5/76/ce/f3933d358dc34e20107f21a5a3c853917bea3f4e20d91a02d3
+        Successfully built ydiff
+        Installing collected packages: ydiff, wcwidth, six, PyYAML, psutil, prettytable, click, python-dateutil, patroni
+        Successfully installed PyYAML-6.0.1 click-8.1.7 patroni-3.2.2 prettytable-3.10.0 psutil-5.9.8 python-dateutil-2.9.0.post0 six-1.16.0 wcwidth-0.2.13 ydiff-1.2
+        WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+        [root@mck-network-test-tmp-1 ~]#
+        
+
+        [root@mck-network-test-tmp-1 ~]# pip3 install python-etcd
+        Requirement already satisfied: python-etcd in /usr/local/lib/python3.9/site-packages (0.4.5)
+        Requirement already satisfied: urllib3>=1.7.1 in /usr/local/lib/python3.9/site-packages (from python-etcd) (2.2.1)
+        Requirement already satisfied: dnspython>=1.13.0 in /usr/local/lib/python3.9/site-packages (from python-etcd) (2.6.1)
+        WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+        [root@mck-network-test-tmp-1 ~]#
+
+Правим конфиг
+
+nano /etc/patroni/patroni.yml
+
+--------------
+
+Проблема запуска
+
+FATAL:  could not open log file "/var/log/postgresql/postgresql-Fri.log": No such file or directory
+
+решена созданием директории
+
+
+
+
+
+
+
+
+
+
+        postgres=# \q
+        -bash-4.2$ psql -p 6432 -h 127.0.0.1 -U postgres postgres
+        Password for user postgres:
+        psql (9.2.24, server 15.6)
+        WARNING: psql version 9.2, server version 15.0.
+                 Some psql features might not work.
+        Type "help" for help.
+        
+        postgres=#
+        postgres=#
+        postgres=# \q
+        -bash-4.2$
+        -bash-4.2$
+        -bash-4.2$ psql -p 5000 -h 127.0.0.1 -U postgres postgres
+        Password for user postgres:
+        psql (9.2.24, server 15.6)
+        WARNING: psql version 9.2, server version 15.0.
+                 Some psql features might not work.
+        Type "help" for help.
+        
+        postgres=#
+
+
+
+
+
 
