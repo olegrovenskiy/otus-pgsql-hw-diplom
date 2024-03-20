@@ -519,9 +519,27 @@ https://github.com/olegrovenskiy/otus-pgsql-hw-lesson-2?tab=readme-ov-file
     Далее клонируем и делаем второй сервер
 
 
+Не забывать отключать файервол при добавлении нод. При подготовке первого сервера, для дальнейшего клонирования, не запускать на нём Patroni, ETCD – только установить. Так как при запуске etcd пишет member-ов, Patroni инициирует базу, кластер, это потребуется потом чистить
+
+                patronictl -c /etc/patroni/patroni.yml remove pg-cluster
+                + Cluster: pg-cluster (7346669802996013287) -----+---------+----+-----------+
+                | Member                 | Host        | Role    | State   | TL | Lag in MB |
+                +------------------------+-------------+---------+---------+----+-----------+
+                | mck-network-test-tmp-1 | 10.102.6.24 | Replica | stopped |    |   unknown |
+                | mck-network-test-tmp-2 | 10.102.6.25 | Replica | stopped |    |   unknown |
+                +------------------------+-------------+---------+---------+----+-----------+
+                Please confirm the cluster name to remove: pg-cluster
+                You are about to remove all information in DCS for pg-cluster, please type: "Yes I am aware": Yes I am aware
 
 
+                [root@mck-network-tools etcd]# cd /var/lib/etcd/
+                [root@mck-network-tools etcd]# ls -l
+                total 0
+                drwx------ 4 etcd etcd 29 Mar 19 08:34 member
+                [root@mck-network-tools etcd]# rm -rf member/
 
+
+И удаление директории /data в PostgreeSQL
 
 
 
