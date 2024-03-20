@@ -45,7 +45,7 @@ https://www.dmosk.ru/miniinstruktions.php?mini=patroni-consul-centos&ysclid=ltqx
 https://dbtut.com/index.php/2022/06/04/how-to-create-a-postgresql-cluster-with-patroni/
 
 
-Подготовка 1-ой ВМ с PGSQL
+###        Подготовка 1-ой ВМ с PGSQL
 
 Виртуальная машина в среде ВМваре
 Centos-7, так как это корпоративный стандарт
@@ -54,8 +54,11 @@ Centos-7, так как это корпоративный стандарт
 детально процес подготовки и инсталяции PostgreSQL описан в ДЗ к уроку 2
 https://github.com/olegrovenskiy/otus-pgsql-hw-lesson-2?tab=readme-ov-file
 
-1.  Сервер mck-network-test-tmp-1 с postgresql-15 подготовлен
-2.  Открыть файрвол
+###        Некоторые пункты инсталяции связанные с архитектурой системы
+
+####        1.  Сервер mck-network-test-tmp-1 с postgresql-15 подготовлен
+
+####        2.  Открыть файрвол, отключить SELINUX
 
 
         8008: This port is used for the HTTP API of Patroni.
@@ -146,7 +149,7 @@ https://github.com/olegrovenskiy/otus-pgsql-hw-lesson-2?tab=readme-ov-file
 
 Необходимые подготовительные компоненты установлены
 
-        ETCD INstall
+####  ETCD инсталяция
         
         pip3 install python-etcd
 
@@ -354,7 +357,34 @@ https://github.com/olegrovenskiy/otus-pgsql-hw-lesson-2?tab=readme-ov-file
         
 Сервис ETCD инсталирован и запускается
 
-Установка KeepAlived 
+При добавлении новой ноды в кластер, возникает проблема
+
+                [root@mck-network-tools etcd]# systemctl status  etcd -l
+                ● etcd.service - Etcd Server
+                   Loaded: loaded (/usr/lib/systemd/system/etcd.service; disabled; vendor preset: disabled)
+                   Active: activating (start) since Tue 2024-03-19 08:03:57 EDT; 55s ago
+                 Main PID: 22416 (etcd)
+                    Tasks: 12
+                   Memory: 23.0M
+                   CGroup: /system.slice/etcd.service
+                           └─22416 /usr/bin/etcd --name=etcd3 --data-dir=/var/lib/etcd --listen-client-urls=http://10.102.6.28:2379,h                           ttp://127.0.0.1:2379
+                
+                Mar 19 08:04:52 mck-network-tools.mgc.local etcd[22416]: request sent was ignored (cluster ID mismatch: peer[833a9a33                           74998f01]=7326c8640809f583, local=5f2008aa8e865f76)
+                Mar 19 08:04:52 mck-network-tools.mgc.local etcd[22416]: request sent was ignored (cluster ID mismatch: peer[ec8c9ef8                           b612e911]=7326c8640809f583, local=5f2008aa8e865f76)
+                Mar 19 08:04:52 mck-network-tools.mgc.local etcd[22416]: request sent was ignored (cluster ID mismatch: peer[833a9a33                           74998f01]=7326c8640809f583, local=5f2008aa8e865f76)
+                Mar 19 08:04:52 mck-network-tools.mgc.local etcd[22416]: request sent was ignored (cluster ID mismatch: peer[ec8c9ef8                           b612e911]=7326c8640809f583, local=5f2008aa8e865f76)
+
+
+- кластер не принимает ID новой ноды, для решения надо удалить директорию 
+
+
+                [root@mck-network-tools etcd]# cd /var/lib/etcd/
+                [root@mck-network-tools etcd]# ls -l
+                total 0
+                drwx------ 4 etcd etcd 29 Mar 19 08:34 member
+                [root@mck-network-tools etcd]# rm -rf member/
+
+####        Установка KeepAlived 
 
 
 [root@mck-network-test-tmp-1 ~]# systemctl status keepalived
@@ -379,7 +409,7 @@ https://github.com/olegrovenskiy/otus-pgsql-hw-lesson-2?tab=readme-ov-file
         Mar 15 11:02:19 mck-network-test-tmp-1.mgc.local Keepalived_vrrp[2150]: /usr/libexec/keepalived/haproxy_check.sh exited with status 1
         [root@mck-network-test-tmp-1 ~]#
 
-### Подготовка и инсталяция PATRONI
+####        Подготовка и инсталяция PATRONI
 
         pip3 install patroni
         
@@ -453,7 +483,7 @@ https://github.com/olegrovenskiy/otus-pgsql-hw-lesson-2?tab=readme-ov-file
 
 
 
-###    Базовые проверки доступности портов
+####    Базовые проверки доступности портов
 
 
 
